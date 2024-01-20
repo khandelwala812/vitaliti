@@ -1,21 +1,26 @@
 import { FC, ReactNode } from 'react'
 import { StyleSheet, View } from 'react-native'
+import Constants from "expo-constants"
 
 interface ScreenLayoutProps {
     children: ReactNode
+    style?: object
 }
 
-export const ScreenLayout: FC<ScreenLayoutProps> = ({ children }) => {
+export const ScreenLayout: FC<ScreenLayoutProps> = ({ children, style }) => {
     return ( 
-        <View style={styles.screen}>{children}</View>
+        <View style={[styles.screen, style]}>
+            <View style={[styles.view, style]}>{children}</View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
+        paddingTop: Constants.statusBarHeight
+    },
+    view: {
+        flex: 1
     }
 })
