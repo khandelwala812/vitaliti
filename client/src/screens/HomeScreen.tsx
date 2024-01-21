@@ -11,7 +11,7 @@ import { useScans } from '../hooks/useScans';
 import { ScreenLayout } from '../layouts/ScreenLayout'
 
 export const HomeScreen = () => {
-    const { scans, setScans } = useScans()
+    const { scans } = useScans()
     const [cameraVisible, setCameraVisible] = useState(false)
     const [cameraType, setCameraTyped] = useState(CameraType.back)
     const [permission, requestPermission] = Camera.useCameraPermissions()
@@ -41,7 +41,7 @@ export const HomeScreen = () => {
             aspect: [4, 3],
             quality: 1
         })
-
+        
         const [pickedPhoto] = photo.assets!
         navigation.navigate(routes.PICTURE, {
             uri: pickedPhoto.uri
@@ -82,7 +82,7 @@ export const HomeScreen = () => {
                         )}
                     />
                 )}
-                <Text style={styles.text}>Welcome to Vitality</Text>
+                <Image style={styles.logo} source={require('../../assets/logo_transparent.png')} />
                 <TouchableOpacity style={styles.button} onPress={openCamera}>
                     <Text style={[styles.text, styles.buttonText]}>Take a picture</Text>
                 </TouchableOpacity>
@@ -129,13 +129,19 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200 
     },
+    logo: {
+        width: '100%',
+        height: undefined,
+        aspectRatio: 2
+    },
     text: {
         fontSize: 18
     },
     screen: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        top: '20%',
+        // justifyContent: 'center',
         gap: 8
     },
     shutterButton: {
