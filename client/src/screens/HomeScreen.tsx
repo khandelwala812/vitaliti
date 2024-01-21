@@ -42,7 +42,9 @@ export const HomeScreen = () => {
             quality: 1
         })
         
-        const [pickedPhoto] = photo.assets!
+        const pickedPhoto = photo.assets?.[0]
+        if (!pickedPhoto) return
+        
         navigation.navigate(routes.PICTURE, {
             uri: pickedPhoto.uri
         })

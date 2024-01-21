@@ -16,7 +16,7 @@ def determineFresh(request):
     img_array = tf_image.img_to_array(pil_image)
     img_array = np.expand_dims(img_array, axis=0) / 255.0 
 
-    model = tf.keras.models.load_model('C:/Users/Andy Lam/OneDrive/Documents/Coding/BoilerMakeXI/vitality\Model')
+    model = tf.keras.models.load_model('C:/Users/avikw/Coding/Projects/EcoFruit/model')
     prediction = model.predict(img_array)
 
     # print(prediction[0][0])

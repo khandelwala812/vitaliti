@@ -48,15 +48,16 @@ export const PictureScreen: FC<PictureScreenProps> = ({ route }) => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: colors.blue,
-        height: 40,
+        height: 50,
+        width: '50%',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 8,
-        borderRadius: 8
+        borderRadius: 32
     },
     image: { 
         width: '100%',
-        height: undefined,
+        height: '85%',
         aspectRatio: 1,
         marginBottom: 8
     },
@@ -66,6 +67,6 @@ const styles = StyleSheet.create({
     },
     text: {
         color: colors.light,
-        fontSize: 14
+        fontSize: 18
     }
 })
