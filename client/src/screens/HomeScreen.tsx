@@ -1,15 +1,17 @@
 import { useRef, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 import { Camera, CameraType } from 'expo-camera'
 import { MaterialIcons, Ionicons } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
 
 import colors from '../theme/colors'
 import routes from '../navigation/routes'
+import { useScans } from '../hooks/useScans';
 import { ScreenLayout } from '../layouts/ScreenLayout'
-import { useNavigation } from '@react-navigation/native';
 
 export const HomeScreen = () => {
+    const { scans, setScans } = useScans()
     const [cameraVisible, setCameraVisible] = useState(false)
     const [cameraType, setCameraTyped] = useState(CameraType.back)
     const [permission, requestPermission] = Camera.useCameraPermissions()
@@ -65,14 +67,28 @@ export const HomeScreen = () => {
             </Camera>
         ): (
             <View style={styles.screen}>
-            <Text>Welcome to Vitality</Text>
-            <TouchableOpacity style={styles.button} onPress={openCamera}>
-                <Text style={styles.text}>Take a picture</Text>
-            </TouchableOpacity>
-            <Text>or</Text>
-            <TouchableOpacity style={styles.button} onPress={pickPhoto}>
-                <Text style={styles.text}>Pick from gallery</Text>
-            </TouchableOpacity>
+                {scans?.length > 0 && (
+                    <FlatList
+                        data={scans}
+                        keyExtractor={(scan) => scan.uri}
+                        renderItem={({ item }) => (
+                            <View>
+                                <Image 
+                                    source={{ uri: item.uri }}
+                                    style={styles.image} 
+                                />
+                            </View>
+                        )}
+                    />
+                )}
+                <Text>Welcome to Vitality</Text>
+                <TouchableOpacity style={styles.button} onPress={openCamera}>
+                    <Text style={styles.text}>Take a picture</Text>
+                </TouchableOpacity>
+                <Text>or</Text>
+                <TouchableOpacity style={styles.button} onPress={pickPhoto}>
+                    <Text style={styles.text}>Pick from gallery</Text>
+                </TouchableOpacity>
             </View>
         )}
         </ScreenLayout>
@@ -81,7 +97,7 @@ export const HomeScreen = () => {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: colors.dodgerBlue,
+        backgroundColor: colors.blue,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',
@@ -104,6 +120,10 @@ const styles = StyleSheet.create({
         top: 32,
         right: 8
     },  
+    image: {
+        width: 200,
+        height: 200 
+    },
     text: {
         color: colors.light,
         fontSize: 14

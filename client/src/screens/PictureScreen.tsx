@@ -1,9 +1,12 @@
 import { FC, useState } from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import colors from '../theme/colors'
+import routes from '../navigation/routes'
+import { useScans } from '../hooks/useScans'
 import { ScreenLayout } from '../layouts/ScreenLayout'
-import { useNavigation } from '@react-navigation/native'
+import { IScan } from '../context/ScanProvider'
 
 interface PictureScreenProps {
     route: {
@@ -15,6 +18,7 @@ interface PictureScreenProps {
 
 export const PictureScreen: FC<PictureScreenProps> = ({ route }) => {
     const navigation = useNavigation()
+    const { scans, setScans } = useScans()
     const [scanning, setScanning] = useState(false)
     const { uri } = route.params
 
@@ -24,21 +28,26 @@ export const PictureScreen: FC<PictureScreenProps> = ({ route }) => {
         // make api call
 
         setScanning(false)
+
+        setScans([...scans, { uri, rating: "Fresh" }])
+        navigation.navigate(routes.HOME)
     }
 
     return (
         <ScreenLayout style={styles.screen}>
             <Image source={{ uri }} style={styles.image} resizeMode='contain' />
-            <TouchableOpacity style={styles.button} onPress={scanPhoto}>
-                <Text style={styles.text}>Scan photo</Text>
-            </TouchableOpacity>
+            {!scanning && (
+                <TouchableOpacity style={styles.button} onPress={scanPhoto}>
+                    <Text style={styles.text}>Scan photo</Text>
+                </TouchableOpacity>
+            )}
         </ScreenLayout>
     )
 }
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: colors.dodgerBlue,
+        backgroundColor: colors.blue,
         height: 40,
         alignItems: 'center',
         justifyContent: 'center',

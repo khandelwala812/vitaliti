@@ -1,11 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
 
-import { AppNavigator } from './navigation/AppNavigator';
+import { AppNavigator } from './src/navigation/AppNavigator';
+import { ScanProvider } from './src/context/ScanProvider';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <AppNavigator />
-    </NavigationContainer>
+    <ScanProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </ScanProvider>
   )
 }
