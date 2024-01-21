@@ -28,6 +28,7 @@ export const HomeScreen = () => {
         if (!cameraRef.current) return 
 
         const photo = await cameraRef.current.takePictureAsync()
+        setCameraVisible(false)
         navigation.navigate(routes.PICTURE, {
             uri: photo.uri
         })
@@ -58,7 +59,7 @@ export const HomeScreen = () => {
             <Camera style={styles.camera} type={cameraType} ref={cameraRef}>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.shutterButton} onPress={takePhoto}>
-                <Ionicons name='radio-button-off-sharp' color={colors.light} size={80} />
+                <Ionicons name='radio-button-off-sharp' color={colors.light} size={90} />
                 </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.flipButton} onPress={flipCamera}>
@@ -81,13 +82,13 @@ export const HomeScreen = () => {
                         )}
                     />
                 )}
-                <Text>Welcome to Vitality</Text>
+                <Text style={styles.text}>Welcome to Vitality</Text>
                 <TouchableOpacity style={styles.button} onPress={openCamera}>
-                    <Text style={styles.text}>Take a picture</Text>
+                    <Text style={[styles.text, styles.buttonText]}>Take a picture</Text>
                 </TouchableOpacity>
-                <Text>or</Text>
+                <Text style={styles.text}>or</Text>
                 <TouchableOpacity style={styles.button} onPress={pickPhoto}>
-                    <Text style={styles.text}>Pick from gallery</Text>
+                    <Text style={[styles.text, styles.buttonText]}>Pick from gallery</Text>
                 </TouchableOpacity>
             </View>
         )}
@@ -98,11 +99,12 @@ export const HomeScreen = () => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: colors.blue,
-        height: 40,
+        height: 50,
+        width: '50%',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 8,
-        borderRadius: 8
+        borderRadius: 32
     },
     buttonContainer: {
         alignItems: 'center',
@@ -110,6 +112,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 32,
         padding: 8
+    },
+    buttonText: {
+        color: colors.light,
     },
     camera: {
         flex: 1,
@@ -125,8 +130,7 @@ const styles = StyleSheet.create({
         height: 200 
     },
     text: {
-        color: colors.light,
-        fontSize: 14
+        fontSize: 18
     },
     screen: {
         flex: 1,
