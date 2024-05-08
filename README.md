@@ -1,7 +1,7 @@
 # Vitaliti - Winner of the Ecolab Improving the World Award  
 
 Authors: Jack Jiang, Andy Lam, and Avi Khandelwal  
-A fresh food scanner created during BoilerMake XI @ Purdue.
+A fresh food scanner submitted to BoilerMake XI @ Purdue.
 
 [Click here to see the project!](https://devpost.com/software/vitaliti-8v0zpo)
 
