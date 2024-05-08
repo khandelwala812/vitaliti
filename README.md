@@ -1,3 +1,10 @@
+# Vitaliti - Winner of the Ecolab Improving the World Award  
+
+Authors: Jack Jiang, Andy Lam, and Avi Khandelwal  
+A fresh food scanner created during BoilerMake XI @ Purdue.
+
+[Click here to see the project!](https://devpost.com/software/vitaliti-8v0zpo)
+
 # What it does
 Vitaliti is an AI-powered mobile application that uses image recognition to determine whether a food is fresh or moldy, allowing the user a simple and highly efficient, automated method of detecting food that should not be eaten and instead be disposed of. Only a single picture snap, either directly from the camera within Vitaliti or with an image from the gallery is required; all of the rest is handled by Vitaliti. Vitaliti can be used by automated systems, such employed in a conveyer belt, to remove spoiled foods from production lines, and can also be used by those with visual disabilities, allowing them an effective way to make sure that every meal they eat are as fresh as can be.
 
