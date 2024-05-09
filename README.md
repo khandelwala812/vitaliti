@@ -2,6 +2,10 @@
 
 Authors: Jack Jiang, Andy Lam, and Avi Khandelwal  
 A fresh food scanner submitted to BoilerMake XI @ Purdue.
+<p float="center">
+  <img src="ecolab-team.jpg" alt="drawing" height="200"/>
+  <img src="stage.jpg" alt="drawing" height="200"/>
+<p/>
 
 [Click here to see the project!](https://devpost.com/software/vitaliti-8v0zpo)
 
